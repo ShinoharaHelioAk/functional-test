@@ -16,7 +16,7 @@ public class TasksTest extends BaseTest {
 	
 	@Before
 	public void inicializa() {
-		DriverFactory.getDriver().get("http://localhost:8001/tasks/");
+		DriverFactory.getDriver().get("http://192.168.15.5:8001/tasks/");
 		dsl = new DSL();
 		page = new TasksPage();
 	}
