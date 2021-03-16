@@ -31,19 +31,16 @@ public class DSL {
 	 */
 	public void aguardaCarregamentoDoElemento(int tempoEmSegundos, String tipoElemento, String caminhoOuIdentificadorDoElemento) {
 		WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), tempoEmSegundos);
-		switch (tipoElemento) {
-		case "id":
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.id(caminhoOuIdentificadorDoElemento)));
-			break;
-		
-		case "xpath":
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(caminhoOuIdentificadorDoElemento)));
-			break;
-
-		default:
+		if (tipoElemento.equalsIgnoreCase("id")) {
+			wait.until(ExpectedConditions.presenceOfElementLocated(
+					By.id(caminhoOuIdentificadorDoElemento)));
+		} else if (tipoElemento.equalsIgnoreCase("xpath")) {
+			wait.until(ExpectedConditions.presenceOfElementLocated(
+					By.xpath(caminhoOuIdentificadorDoElemento)));
+		} else {
 			//Caso o parâmetro "tipoElemento" não seja nenhum dos cases acima, por padrão será reconhecido como "id". 
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.id(caminhoOuIdentificadorDoElemento)));
-			break;
+			wait.until(ExpectedConditions.presenceOfElementLocated(
+					By.id(caminhoOuIdentificadorDoElemento)));
 		}
 	}
 	
